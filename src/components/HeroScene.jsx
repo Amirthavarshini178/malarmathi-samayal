@@ -1,0 +1,14 @@
+import React,{Suspense,useRef}from'react';import{Canvas,useFrame}from'@react-three/fiber';
+function KitchenStillLife(){const root=useRef();useFrame((state,dt)=>{if(root.current){root.current.rotation.y+=(state.pointer.x*.12-root.current.rotation.y)*Math.min(1,dt*2);root.current.rotation.x+=(state.pointer.y*-.06-root.current.rotation.x)*Math.min(1,dt*2)}});return <group ref={root}>
+  <mesh position={[0,-1.45,0]} receiveShadow><cylinderGeometry args={[3.5,3.5,.18,48]}/><meshStandardMaterial color="#28382a" roughness={.46}/></mesh>
+  <mesh position={[-1.25,-.55,0]} castShadow><cylinderGeometry args={[.76,.95,.94,48,1,true]}/><meshStandardMaterial color="#b47b36" metalness={.78} roughness={.27} side={2}/></mesh>
+  <mesh position={[-1.25,-.04,0]} castShadow><torusGeometry args={[.76,.055,12,48]}/><meshStandardMaterial color="#ead393" metalness={.85} roughness={.2}/></mesh>
+  <mesh position={[1.08,-.75,-.05]} castShadow><sphereGeometry args={[.73,40,24]}/><meshStandardMaterial color="#8b4935" roughness={.45}/></mesh>
+  <mesh position={[1.08,-.25,-.05]} castShadow><torusGeometry args={[.62,.075,12,42]}/><meshStandardMaterial color="#b88645" metalness={.55} roughness={.28}/></mesh>
+  <mesh position={[.05,-1.17,.15]} rotation={[-Math.PI/2,0,.2]} castShadow><cylinderGeometry args={[.88,.8,.1,48]}/><meshStandardMaterial color="#e0d1a9" roughness={.76}/></mesh>
+  {Array.from({length:7},(_,i)=><mesh key={i} position={[-.42+(i%4)*.26,-1.06,.12+Math.floor(i/4)*.25]} castShadow><sphereGeometry args={[.105,20,16]}/><meshStandardMaterial color={i%2?'#a74b29':'#c58735'} roughness={.4}/></mesh>)}
+  {[0,1,2].map(i=><mesh key={`leaf${i}`} position={[-.1+i*.22,.22,-.6-i*.12]} rotation={[-.32,.16*i,-.2]} castShadow><sphereGeometry args={[1,24,16,0,Math.PI*2,0,Math.PI*.3]}/><meshStandardMaterial color={i%2?'#3a7042':'#557b43'} roughness={.62} side={2}/></mesh>)}
+  {Array.from({length:5},(_,i)=><mesh key={`flower${i}`} position={[1.6+(i%3)*.12,.6+Math.floor(i/3)*.12,.38]}><sphereGeometry args={[.07,16,12]}/><meshStandardMaterial color="#fff7df" roughness={.58}/></mesh>)}
+  <mesh position={[0,.45,-.45]}><torusGeometry args={[.54,.018,8,48]}/><meshStandardMaterial color="#fff2cf" transparent opacity={.35}/></mesh>
+ </group>}
+export default function HeroScene(){return <div className="three-scene"><Canvas dpr={[1,1.5]} camera={{position:[0,.3,6.4],fov:38}} shadows gl={{alpha:true,antialias:true,powerPreference:'low-power'}} fallback={<div className="scene-fallback"/>}><color attach="background" args={['#20281e']}/><ambientLight intensity={1.15}/><directionalLight position={[-3,5,5]} intensity={3.1} color="#ffe4ad" castShadow/><pointLight position={[3,2,-1]} intensity={2} color="#d69c55"/><Suspense fallback={null}><KitchenStillLife/></Suspense></Canvas><div className="scene-vignette"/><div className="scene-caption">A LITTLE TASTE OF HOME <span>✦</span> MADE WITH CARE</div></div>}

@@ -1,0 +1,15 @@
+export const business={
+  brandName:'\u0bae\u0bb2\u0bb0\u0bcd\u0bae\u0ba4\u0bbf \u0b9a\u0bae\u0bc8\u0baf\u0bb2\u0bcd',
+  brandEnglish:'MALARMATHI SAMAYAL',
+  tagline:'Traditional Taste... From Our Home to Yours',
+  whatsapp:'9342889241',
+  email:'malarmadhi.foods@gmail.com',
+  instagram:'https://instagram.com/malarmathisamayal',
+  handle:'@malarmathisamayal',
+  hours:[['Monday \u2013 Saturday','9:00 AM \u2013 8:00 PM'],['Sunday','10:00 AM \u2013 6:00 PM']],
+  businessHours:[['Monday \u2013 Saturday','9:00 AM \u2013 8:00 PM'],['Sunday','10:00 AM \u2013 6:00 PM']],
+  startingPrice:199,
+  delivery:'Local delivery and pickup options can be arranged based on location.',
+  deliveryInformation:'Local delivery and pickup options can be arranged based on location.',
+  international:'International orders and shipping availability depend on destination, product type and applicable shipping/import requirements. Contact us before placing an international order.',
+};

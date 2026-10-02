@@ -1,0 +1,3 @@
+import React,{lazy,Suspense,useEffect,useState}from'react';
+const Scene=lazy(()=>import('./HeroScene.jsx'));
+export default function HeroShowcase(){const[enabled,setEnabled]=useState(false);useEffect(()=>{const media=window.matchMedia('(min-width: 761px) and (prefers-reduced-motion: no-preference)');const update=()=>setEnabled(media.matches&&'WebGLRenderingContext'in window);update();media.addEventListener?.('change',update);return()=>media.removeEventListener?.('change',update)},[]);return enabled?<Suspense fallback={<div className="scene-fallback"/>}><Scene/></Suspense>:<div className="scene-fallback" aria-label="Traditional kitchen scene"/>}
